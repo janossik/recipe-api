@@ -22,9 +22,9 @@ export class ProductService {
     return product;
   }
 
-  read(): Product[];
+  read(): readonly Product[];
   read(id: number): Product;
-  read(id?: number): Product | Product[] {
+  read(id?: number): Product | readonly Product[] {
     if (typeof id === 'number') return this.getOne(id);
     return this.productes;
   }

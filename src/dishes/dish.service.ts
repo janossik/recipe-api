@@ -22,9 +22,9 @@ export class DishService {
     return dish;
   }
 
-  read(): Dish[];
+  read(): readonly Dish[];
   read(id: number): Dish;
-  read(id?: number): Dish | Dish[] {
+  read(id?: number): Dish | readonly Dish[] {
     if (typeof id === 'number') return this.getOne(id);
     return this.dishes;
   }
