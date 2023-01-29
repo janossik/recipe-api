@@ -18,7 +18,9 @@ export class ProductsController {
 
   @Get(':id')
   readProductById(@Param('id') id: string) {
-    return this.products.find((product) => product.id === Number(id));
+    const product = this.products.find((product) => product.id === Number(id));
+    if (!product) throw new HttpException(`Product by id ${id} not found`, HttpStatus.NOT_FOUND);
+    return product;
   }
 
   @Post('create')
