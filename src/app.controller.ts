@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 const fruits = [
@@ -37,10 +28,7 @@ export class AppController {
   }
 
   @Put()
-  updateFruit(
-    @Param() id: number,
-    @Body() fruit: { name: string; color: string },
-  ) {
+  updateFruit(@Param() id: number, @Body() fruit: { name: string; color: string }) {
     const index = fruits.findIndex((f) => f.id === id);
     fruits[index] = { id, ...fruit };
     return { message: 'Fruit updated', data: [fruits[index]] };
