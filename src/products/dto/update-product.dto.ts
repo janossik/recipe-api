@@ -1,5 +1,5 @@
 import { IsNumber, IsString, IsEnum } from 'class-validator';
-import { Product } from '../Product';
+import { Product, Unit } from '../Product';
 
 export class UpdateProductDTO implements Product {
   @IsNumber({}, { message: 'Id must be a number' })
@@ -8,8 +8,8 @@ export class UpdateProductDTO implements Product {
   @IsString({ message: 'Name must be a string' })
   name: string;
 
-  @IsEnum(['kg', 'g', 'l', 'ml', 'unit'], { message: 'Unit must be a string' })
-  unit: 'kg' | 'g' | 'l' | 'ml' | 'unit';
+  @IsEnum(Unit)
+  unit: Unit | keyof typeof Unit;
 
   @IsNumber({}, { message: 'amount must be a number' })
   amount: number;
