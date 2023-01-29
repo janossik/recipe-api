@@ -17,7 +17,9 @@ export class DishesController {
 
   @Get(':id')
   readDishById(@Param('id') id: string) {
-    return this.dishes.find((dish) => dish.id === Number(id));
+    const dish = this.dishes.find((dish) => dish.id === Number(id));
+    if (!dish) throw new HttpException(`Dish by id ${id} not found`, HttpStatus.NOT_FOUND);
+    return dish;
   }
 
   @Post('create')
